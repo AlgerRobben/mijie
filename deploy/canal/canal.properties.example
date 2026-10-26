@@ -1,0 +1,11 @@
+# Canal服务配置示例，部署到conf/canal.properties；采集器代码属于Canal自身。
+# rocketMQ模式将Binlog事件投递Broker，flatMessage输出业务消费者解析的普通JSON。
+# 主要是canal与mq相关的配置，即消息往哪发
+canal.serverMode = rocketMQ
+# Canal 将解析出的 MySQL 变更，以普通 JSON 格式作为 MQ 消息体发送
+canal.mq.flatMessage = true
+rocketmq.namesrv.addr = 127.0.0.1:9876
+rocketmq.producer.group = hmdp-canal-producer
+# 这里是Canal生产端发送失败重试；Java消费端的重试次数在CanalRocketMqConfig配置。
+rocketmq.retry.times.when.send.failed = 3
+rocketmq.vip.channel.enabled = false

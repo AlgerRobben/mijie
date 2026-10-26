@@ -1,0 +1,10 @@
+# 实例配置示例，部署到conf/example/instance.properties。
+# MySQL须启用ROW/FULL Binlog并建立专用复制账号；这里仅保留占位值。
+# 这里主要配置的是监控什么数据库的什么表
+canal.instance.master.address = 127.0.0.1:3306
+canal.instance.dbUsername = <canal-user>
+canal.instance.dbPassword = <canal-password>
+# 过滤器限定商铺表，订单/关注表不走这个缓存同步消费者；反斜杠须按properties格式转义。
+canal.instance.filter.regex = hmdp\\.(tb_shop|tb_shop_cache_version)
+canal.mq.topic = hmdp-shop-change
+canal.mq.partition = 0
